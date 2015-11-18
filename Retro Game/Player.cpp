@@ -18,8 +18,8 @@ void Player::update()
 	}
 
 	float sdt = sfw::getDeltaTime() * speed;
-	if (sfw::getKey('W')) y += sdt;
-	if (sfw::getKey('S')) y -= sdt;
+	if (sfw::getKey('W')) y -= sdt;
+	if (sfw::getKey('S')) y += sdt;
 	if (sfw::getKey('A')) x -= sdt;
 	if (sfw::getKey('D')) x += sdt;
 }
