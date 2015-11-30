@@ -36,13 +36,11 @@ struct ship
 
 		if (sfw::getKey(KEY_LEFT) && xvel == 0)
 		{
-			xvel = -1000;
-			//xacc = 0;
+			xvel = -750;
 		}
 		else if (sfw::getKey(KEY_RIGHT) && xvel == 0)
 		{
-			xvel = 1000;
-			//xacc = 0;
+			xvel = 750;
 		}
 		else
 		{
@@ -59,9 +57,8 @@ struct ship
 				{
 					bullets->at(i) = { xpos, ypos, 1000, .6f, true };
 					success = true;
-
 				}
-			if(!success)
+			if (!success)
 				bullets->push_back({xpos, ypos, 1000, .6f, true});
 		}
 

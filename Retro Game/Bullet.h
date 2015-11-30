@@ -46,6 +46,6 @@ public:
 	// override the draw to use simple line
 	virtual void draw()
 	{
-		sfw::drawLine(x, y, x, y+70,MAGENTA); 
+		sfw::drawLine(x, y, x, y+70, MAGENTA); 
 	}
 };

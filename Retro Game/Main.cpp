@@ -12,6 +12,7 @@ void main()
 	
 	unsigned m = sfw::loadTextureMap("./res/106826.jpg");
 	unsigned s = sfw::loadTextureMap("./res/rsH6n.png");
+	unsigned b = sfw::loadTextureMap("./res/bullet.png");
 
 	std::vector<bullet> bullets;
 	ship player = {400, 50, 0, 0, 0, 0, &bullets};
@@ -31,7 +32,7 @@ void main()
 
 		for (int i = 0; i < bullets.size(); ++i)
 			if(bullets[i].alive)
-				sfw::drawTexture(s, bullets[i].xpos, bullets[i].ypos, 50, 50);
+				sfw::drawTexture(b, bullets[i].xpos, bullets[i].ypos, 50, 50);
 	
 	// Updating Everything
 		player.update();
