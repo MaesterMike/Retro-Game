@@ -16,10 +16,12 @@ void Player::update()
 		animTimer = 0;
 		animationName = "BOOM";
 	}
-
+	
+	// speed scaled by delta time
+	//
 	float sdt = sfw::getDeltaTime() * speed;
-	if (sfw::getKey('W')) y -= sdt;
-	if (sfw::getKey('S')) y += sdt;
-	if (sfw::getKey('A')) x -= sdt;
-	if (sfw::getKey('D')) x += sdt;
+	if (sfw::getKey('W')) y -= sdt;	// up
+	if (sfw::getKey('S')) y += sdt; // down
+	if (sfw::getKey('A')) x -= sdt; // left
+	if (sfw::getKey('D')) x += sdt; // right
 }
