@@ -1,9 +1,7 @@
 #include <iostream>
 #include <cmath>
-
 #include "Ship.h"
 #include "sfwdraw.h"
-#include "Bullet.h"
 #include "Enemy.h"
 
 const int SCREEN_WIDTH  = 800;
