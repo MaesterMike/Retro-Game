@@ -33,17 +33,35 @@ void main()
 	unsigned s = sfw::loadTextureMap("./res/rsH6n.png");
 	unsigned b = sfw::loadTextureMap("./res/bullet.png");
 	unsigned e = sfw::loadTextureMap("./res/paxship_05.gif");
+	unsigned x = sfw::loadTextureMap("./res/spritesheet1.png");
 
 	std::vector<bullet> bullets;
 	ship player = {400, 50, 0, 0, 0, 0, &bullets};
+	
+	
+	std::vector<Enemy> enemies;
+	for (int j = 0; j < 30; ++j)
+	{
+			enemies.push_back(Enemy());
+			enemies[j].isAlive = true;
+			enemies[j].x = rand() % 600 + 100;
+			enemies[j].y = 625;
+			enemies[j].w = 50;
+			enemies[j].h = 50;
+			enemies[j].xvel = 0;
+			enemies[j].yvel = -250;
+			enemies[j].textureId = e;
+	}
+	
+
 	Enemy testEnemy;
 	testEnemy.isAlive = true;
 	testEnemy.x = 400;
-	testEnemy.y = 500;
+	testEnemy.y = 625;
 	testEnemy.w = 50;
 	testEnemy.h = 50;
 	testEnemy.xvel = 0;
-	testEnemy.yvel = -350;
+	testEnemy.yvel = -250;
 
 	testEnemy.textureId = e;
 	
@@ -57,8 +75,17 @@ void main()
 		sfw::drawTexture(m, 0, 600, 800, 600, 0, false, 0, 0x88888888);
 		sfw::drawTexture(s, player.xpos, player.ypos, 50, 50);
 		
+
+
+//////////////////////////////////////////////////////////////
+		for (int i = 0; i < enemies.size(); ++i)
+			if(enemies[i].isAlive)
+				enemies[i].draw();
+
 		if (testEnemy.isAlive)
 			testEnemy.draw();
+//////////////////////////////////////////////////////////////
+
 
 		for (int i = 0; i < bullets.size(); ++i)
 			if(bullets[i].alive)
@@ -67,6 +94,10 @@ void main()
 	// Updating Everything
 		player.update();
 		testEnemy.update();
+		for (int i = 0; i < enemies.size(); ++i)
+			if (enemies[i].isAlive)
+				enemies[i].update();
+
 		for (int i = 0; i < bullets.size(); ++i)
 			if(bullets[i].alive)
 				bullets[i].update();
@@ -80,11 +111,39 @@ void main()
 				{
 					testEnemy.isAlive = false;
 				}
+
+				for (int j = 0; j < enemies.size(); ++j)
+					if (enemies[j].isAlive && checkCollision(bullets[i], enemies[j]))
+					{
+						enemies[j].isAlive = false;
+						bullets[i].alive = false;
+					}
 			}
 		}
 		
-
 		if (sfw::getKey(KEY_ESCAPE)) break;
+
+		if (!testEnemy.isAlive)
+		{
+			testEnemy.isAlive = true;
+			testEnemy.x = rand()%600+100;
+			testEnemy.y = 625;
+			testEnemy.w = 50;
+			testEnemy.h = 50;
+			testEnemy.xvel = 0;
+			testEnemy.yvel = -250;
+		}
+		for (int j = 0; j < enemies.size(); ++j)
+		if (!enemies[j].isAlive)
+		{
+			enemies[j].isAlive = true;
+			enemies[j].x = rand() % 600 + 100;
+			enemies[j].y = 625;
+			enemies[j].w = 50;
+			enemies[j].h = 50;
+			enemies[j].xvel = 0;
+			enemies[j].yvel = -250;
+		}
 	}
 	sfw::termContext();
 }

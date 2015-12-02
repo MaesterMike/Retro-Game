@@ -17,9 +17,9 @@ public:
 		x += xvel * sfw::getDeltaTime();
 		y += yvel * sfw::getDeltaTime();
 
-		if (y < 0)
+		if (y < -25)
 		{
-			y = 500;
+			y = 625;
 		}
 	}
 
