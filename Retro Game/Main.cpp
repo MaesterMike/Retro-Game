@@ -37,10 +37,9 @@ void main()
 
 	std::vector<bullet> bullets;
 	ship player = {400, 50, 0, 0, 0, 0, &bullets};
-	
-	
+		
 	std::vector<Enemy> enemies;
-	for (int j = 0; j < 30; ++j)
+	for (int j = 0; j < 20; ++j)
 	{
 			enemies.push_back(Enemy());
 			enemies[j].isAlive = true;
@@ -53,7 +52,6 @@ void main()
 			enemies[j].textureId = e;
 	}
 	
-
 	Enemy testEnemy;
 	testEnemy.isAlive = true;
 	testEnemy.x = 400;
@@ -75,8 +73,6 @@ void main()
 		sfw::drawTexture(m, 0, 600, 800, 600, 0, false, 0, 0x88888888);
 		sfw::drawTexture(s, player.xpos, player.ypos, 50, 50);
 		
-
-
 //////////////////////////////////////////////////////////////
 		for (int i = 0; i < enemies.size(); ++i)
 			if(enemies[i].isAlive)
@@ -85,7 +81,6 @@ void main()
 		if (testEnemy.isAlive)
 			testEnemy.draw();
 //////////////////////////////////////////////////////////////
-
 
 		for (int i = 0; i < bullets.size(); ++i)
 			if(bullets[i].alive)
